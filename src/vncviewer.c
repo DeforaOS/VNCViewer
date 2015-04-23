@@ -410,10 +410,13 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 
 static void do_fullscreen(GtkWidget *menu, GtkWidget *window)
 {
-    if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menu)))
+    if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menu))) {
+		gtk_widget_hide(statusbar);
         gtk_window_fullscreen(GTK_WINDOW(window));
-    else
+	} else {
         gtk_window_unfullscreen(GTK_WINDOW(window));
+		gtk_widget_show(statusbar);
+	}
 }
 
 static void do_scaling(GtkWidget *menu, GtkWidget *vncdisplay)
