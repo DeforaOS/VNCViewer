@@ -802,7 +802,7 @@ int vncviewer(gchar ** args)
 
     submenu = gtk_menu_new();
 
-    about = gtk_menu_item_new_with_mnemonic("_About");
+    about = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(submenu), about);
 
