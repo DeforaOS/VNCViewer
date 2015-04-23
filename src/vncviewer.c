@@ -98,7 +98,7 @@
 static VncAudioPulse *pa = NULL;
 #endif
 
-static GtkWidget *vnc;
+static GtkWidget *vnc = NULL;
 static GtkWidget *statusbar;
 
 static char const * authors[] = {
@@ -124,10 +124,21 @@ GSList *accel_list;
 static void set_status(char const * format, ...)
 {
 	va_list ap;
+	guint id;
+	gchar *status;
 
-	fputs(PROGNAME ": ", stderr);
 	va_start(ap, format);
-	vfprintf(stderr, format, ap);
+	if (vnc != NULL) {
+		id = gtk_statusbar_get_context_id(GTK_STATUSBAR(statusbar), "");
+		status = g_strdup_vprintf(format, ap);
+		gtk_statusbar_pop(GTK_STATUSBAR(statusbar), id);
+		gtk_statusbar_push(GTK_STATUSBAR(statusbar), id, status);
+		g_free(status);
+	} else {
+	    fputs(PROGNAME ": ", stderr);
+		vfprintf(stderr, format, ap);
+	    fputc('\n', stderr);
+	}
 	va_end(ap);
 }
 
@@ -165,7 +176,7 @@ static gboolean vnc_screenshot(GtkWidget *window G_GNUC_UNUSED,
         GdkPixbuf *pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay));
         gdk_pixbuf_save(pix, "gvncviewer.png", "png", NULL, "tEXt::Generator App", "gvncviewer", NULL);
         g_object_unref(pix);
-        set_status("Screenshot saved to gvncviewer.png\n");
+        set_status("Screenshot saved to gvncviewer.png");
     }
     return FALSE;
 }
@@ -258,13 +269,13 @@ static int connected = 0;
 
 static void vnc_connected(GtkWidget *vncdisplay G_GNUC_UNUSED)
 {
-    set_status("Connected to server\n");
+    set_status("Connected to server");
     connected = 1;
 }
 
 static void vnc_initialized(GtkWidget *vncdisplay, GtkWidget *window)
 {
-    set_status("Connection initialized\n");
+    set_status("Connection initialized");
     set_title(VNC_DISPLAY(vncdisplay), window, FALSE);
     gtk_widget_show_all(window);
 
@@ -285,28 +296,28 @@ static void vnc_initialized(GtkWidget *vncdisplay, GtkWidget *window)
 static void vnc_auth_failure(GtkWidget *vncdisplay G_GNUC_UNUSED,
                              const char *msg)
 {
-    set_status("Authentication failed '%s'\n", msg ? msg : "");
+    set_status("Authentication failed '%s'", msg ? msg : "");
 }
 
 static void vnc_desktop_resize(GtkWidget *vncdisplay G_GNUC_UNUSED,
                                int width, int height)
 {
-    set_status("Remote desktop size changed to %dx%d\n", width, height);
+    set_status("Remote desktop size changed to %dx%d", width, height);
 }
 
 static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED)
 {
     if(connected)
-        set_status("Disconnected from server\n");
+        set_status("Disconnected from server");
     else
-        set_status("Failed to connect to server\n");
+        set_status("Failed to connect to server");
     gtk_main_quit();
 }
 
 static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F1 };
-    set_status("Sending Ctrl+Alt+F1\n");
+    set_status("Sending Ctrl+Alt+F1");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -314,7 +325,7 @@ static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf2(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F2 };
-    set_status("Sending Ctrl+Alt+F2\n");
+    set_status("Sending Ctrl+Alt+F2");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -322,7 +333,7 @@ static void send_caf2(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf3(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F3 };
-    set_status("Sending Ctrl+Alt+F3\n");
+    set_status("Sending Ctrl+Alt+F3");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -330,7 +341,7 @@ static void send_caf3(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf4(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F4 };
-    set_status("Sending Ctrl+Alt+F4\n");
+    set_status("Sending Ctrl+Alt+F4");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -338,7 +349,7 @@ static void send_caf4(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf5(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F5 };
-    set_status("Sending Ctrl+Alt+F5\n");
+    set_status("Sending Ctrl+Alt+F5");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -346,7 +357,7 @@ static void send_caf5(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf6(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F6 };
-    set_status("Sending Ctrl+Alt+F6\n");
+    set_status("Sending Ctrl+Alt+F6");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -354,7 +365,7 @@ static void send_caf6(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf7(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F7 };
-    set_status("Sending Ctrl+Alt+F7\n");
+    set_status("Sending Ctrl+Alt+F7");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -362,7 +373,7 @@ static void send_caf7(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_caf8(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F8 };
-    set_status("Sending Ctrl+Alt+F8\n");
+    set_status("Sending Ctrl+Alt+F8");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -370,7 +381,7 @@ static void send_caf8(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_cad(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_Delete };
-    set_status("Sending Ctrl+Alt+Delete\n");
+    set_status("Sending Ctrl+Alt+Delete");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -378,7 +389,7 @@ static void send_cad(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void send_cab(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
     guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_BackSpace };
-    set_status("Sending Ctrl+Alt+Backspace\n");
+    set_status("Sending Ctrl+Alt+Backspace");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
 }
@@ -574,7 +585,7 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
     unsigned int i, prompt = 0;
     const char **data;
 
-    set_status("Got credential request for %d credential(s)\n", credList->n_values);
+    set_status("Got credential request for %d credential(s)", credList->n_values);
 
     data = g_new0(const char *, credList->n_values);
 
@@ -660,11 +671,11 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
             if (vnc_display_set_credential(VNC_DISPLAY(vncdisplay),
                                            g_value_get_enum(cred),
                                            data[i])) {
-                set_status("Failed to set credential type %d\n", g_value_get_enum(cred));
+                set_status("Failed to set credential type %d", g_value_get_enum(cred));
                 vnc_display_close(VNC_DISPLAY(vncdisplay));
             }
         } else {
-            set_status("Unsupported credential type %d\n", g_value_get_enum(cred));
+            set_status("Unsupported credential type %d", g_value_get_enum(cred));
             vnc_display_close(VNC_DISPLAY(vncdisplay));
         }
     }
