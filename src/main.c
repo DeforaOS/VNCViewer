@@ -48,7 +48,6 @@ int main(int argc, char **argv)
     gchar *name;
     GOptionContext *context;
     GError *error = NULL;
-    const char *help_msg = "Run '" PROGNAME " --help' to see a full list of available command line options";
 
     name = g_strdup_printf("- Simple VNC Client on Gtk-VNC %s",
                            vnc_util_get_version_string());
@@ -59,14 +58,12 @@ int main(int argc, char **argv)
     g_option_context_add_group (context, vnc_display_get_option_group ());
     g_option_context_parse (context, &argc, &argv, &error);
     if (error) {
-        g_print ("%s\n%s\n",
-                 error->message,
-                 help_msg);
+        g_print ("%s\n", error->message);
         g_error_free (error);
         return 1;
     }
     if (!args || (g_strv_length(args) != 1)) {
-        fprintf(stderr, "Usage: " PROGNAME " [hostname][:display]\n%s\n", help_msg);
+        fprintf(stderr, "Usage: " PROGNAME " [hostname][:display]\n");
         return 1;
     }
     vncviewer(args);
