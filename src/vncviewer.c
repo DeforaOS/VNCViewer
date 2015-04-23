@@ -134,10 +134,10 @@ static void set_title(VncDisplay *vncdisplay, GtkWidget *window,
     gchar *title;
 
     if (grabbed)
-        title = g_strdup_printf("(Press %s to release pointer) %s - " PROGNAME,
+        title = g_strdup_printf("(Press %s to release pointer) %s - " PACKAGE,
                                 seqstr, name);
     else
-        title = g_strdup_printf("%s - " PROGNAME, name);
+        title = g_strdup_printf("%s - " PACKAGE, name);
 
     gtk_window_set_title(GTK_WINDOW(window), title);
 
@@ -695,6 +695,8 @@ int vncviewer(gchar ** args)
 #endif
 
     gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
+
+    gtk_window_set_title(GTK_WINDOW(window), PACKAGE);
 
     file = gtk_menu_item_new_with_mnemonic("_File");
     gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file);
