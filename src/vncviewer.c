@@ -38,6 +38,8 @@
 #include <libview/autoDrawer.h>
 #endif
 
+#include "vncviewer.h"
+
 /* constants */
 #ifndef PROGNAME
 # define PROGNAME "vncviewer"
@@ -89,16 +91,6 @@
 #ifndef GDK_F11
 #define GDK_F11 GDK_KEY_F11
 #endif
-
-
-static gchar **args = NULL;
-static const GOptionEntry options [] =
-    {
-        {
-            G_OPTION_REMAINING, '\0', 0, G_OPTION_ARG_STRING_ARRAY, &args,
-            NULL, "[hostname][:display]" },
-        { NULL, 0, 0, G_OPTION_ARG_NONE, NULL, NULL, 0 }
-    };
 
 #ifdef HAVE_PULSEAUDIO
 static VncAudioPulse *pa = NULL;
@@ -649,11 +641,8 @@ static gboolean window_state_event(GtkWidget *widget,
 }
 #endif
 
-int main(int argc, char **argv)
+int vncviewer(gchar ** args)
 {
-    gchar *name;
-    GOptionContext *context;
-    GError *error = NULL;
     GtkWidget *window;
     GtkWidget *layout;
     GtkWidget *menubar;
@@ -672,29 +661,7 @@ int main(int argc, char **argv)
     GtkWidget *fullscreen;
     GtkWidget *scaling;
     GtkWidget *showgrabkeydlg;
-    const char *help_msg = "Run '" PROGNAME " --help' to see a full list of available command line options";
     GSList *accels;
-
-    name = g_strdup_printf("- Simple VNC Client on Gtk-VNC %s",
-                           vnc_util_get_version_string());
-
-    /* Setup command line options */
-    context = g_option_context_new (name);
-    g_option_context_add_main_entries (context, options, NULL);
-    g_option_context_add_group (context, gtk_get_option_group (TRUE));
-    g_option_context_add_group (context, vnc_display_get_option_group ());
-    g_option_context_parse (context, &argc, &argv, &error);
-    if (error) {
-        g_print ("%s\n%s\n",
-                 error->message,
-                 help_msg);
-        g_error_free (error);
-        return 1;
-    }
-    if (!args || (g_strv_length(args) != 1)) {
-        fprintf(stderr, "Usage: " PROGNAME " [hostname][:display]\n%s\n", help_msg);
-        return 1;
-    }
 
     vnc = vnc_display_new();
 
@@ -886,9 +853,6 @@ int main(int argc, char **argv)
     g_signal_connect(window, "window-state-event",
                      G_CALLBACK(window_state_event), layout);
 #endif
-
-    gtk_main();
-
     return 0;
 }
 
