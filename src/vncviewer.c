@@ -38,6 +38,12 @@
 #include <libview/autoDrawer.h>
 #endif
 
+/* constants */
+#ifndef PROGNAME
+# define PROGNAME "vncviewer"
+#endif
+
+
 #ifndef GDK_Return
 #define GDK_Return GDK_KEY_Return
 #endif
@@ -123,11 +129,10 @@ static void set_title(VncDisplay *vncdisplay, GtkWidget *window,
     gchar *title;
 
     if (grabbed)
-        title = g_strdup_printf("(Press %s to release pointer) %s - GVncViewer",
+        title = g_strdup_printf("(Press %s to release pointer) %s - " PROGNAME,
                                 seqstr, name);
     else
-        title = g_strdup_printf("%s - GVncViewer",
-                                name);
+        title = g_strdup_printf("%s - " PROGNAME, name);
 
     gtk_window_set_title(GTK_WINDOW(window), title);
 
@@ -535,7 +540,7 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
             prompt++;
             break;
         case VNC_DISPLAY_CREDENTIAL_CLIENTNAME:
-            data[i] = "gvncviewer";
+            data[i] = PACKAGE;
         default:
             break;
         }
@@ -667,7 +672,7 @@ int main(int argc, char **argv)
     GtkWidget *fullscreen;
     GtkWidget *scaling;
     GtkWidget *showgrabkeydlg;
-    const char *help_msg = "Run 'gvncviewer --help' to see a full list of available command line options";
+    const char *help_msg = "Run '" PROGNAME " --help' to see a full list of available command line options";
     GSList *accels;
 
     name = g_strdup_printf("- Simple VNC Client on Gtk-VNC %s",
@@ -687,7 +692,7 @@ int main(int argc, char **argv)
         return 1;
     }
     if (!args || (g_strv_length(args) != 1)) {
-        fprintf(stderr, "Usage: gvncviewer [hostname][:display]\n%s\n", help_msg);
+        fprintf(stderr, "Usage: " PROGNAME " [hostname][:display]\n%s\n", help_msg);
         return 1;
     }
 
