@@ -1,7 +1,10 @@
-/*
+/* $Id$ */
+/* Copyright (c) 2015 Pierre Pronchery <khorben@defora.org> */
+/* This file is part of DeforaOS Desktop VNCViewer */
+/* Originally based on:
  * GTK VNC Widget
  *
- * Copyright (C) 2006  Anthony Liguori <anthony@codemonkey.ws>
+ * Copyright (c) 2006 Anthony Liguori <anthony@codemonkey.ws>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
