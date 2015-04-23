@@ -101,6 +101,12 @@ static VncAudioPulse *pa = NULL;
 static GtkWidget *vnc;
 static GtkWidget *statusbar;
 
+static char const * authors[] = {
+	"Anthony Liguori <anthony@codemonkey.ws>",
+	"Pierre Pronchery <khorben@defora.org>",
+	NULL
+};
+
 typedef struct {
     GtkWidget *label;
     guint curkeys;
@@ -368,6 +374,31 @@ static void send_cab(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
     set_status("Sending Ctrl+Alt+Backspace\n");
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
+}
+
+static void do_about(GtkWidget *menu, GtkWidget *window)
+{
+	GtkWidget *dialog;
+	char const copyright[] =
+		"Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
+		"Copyright © 2015 Pierre Pronchery <khorben@defora.org>";
+
+	dialog = gtk_about_dialog_new();
+	gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(window));
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
+			"VNC viewer for the DeforaOS desktop");
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), copyright);
+#if GTK_CHECK_VERSION(2, 12, 0)
+	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), PACKAGE);
+#else
+	gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), PACKAGE);
+#endif
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), VERSION);
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),
+			"http://www.defora.org/");
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
 static void do_fullscreen(GtkWidget *menu, GtkWidget *window)
@@ -659,7 +690,7 @@ int vncviewer(gchar ** args)
     GtkWidget *window;
     GtkWidget *layout;
     GtkWidget *menubar;
-    GtkWidget *file, *sendkey, *view, *settings;
+    GtkWidget *file, *sendkey, *view, *settings, *help;
     GtkWidget *submenu;
     GtkWidget *close;
     GtkWidget *caf1;
@@ -674,6 +705,7 @@ int vncviewer(gchar ** args)
     GtkWidget *cab;
     GtkWidget *fullscreen;
     GtkWidget *scaling;
+    GtkWidget *about;
     GtkWidget *showgrabkeydlg;
     GSList *accels;
     gchar *tmp;
@@ -757,6 +789,17 @@ int vncviewer(gchar ** args)
     gtk_menu_shell_append(GTK_MENU_SHELL(submenu), showgrabkeydlg);
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(settings), submenu);
+
+    help = gtk_menu_item_new_with_mnemonic("_Help");
+    gtk_menu_shell_append(GTK_MENU_SHELL(menubar), help);
+
+    submenu = gtk_menu_new();
+
+    about = gtk_menu_item_new_with_mnemonic("_About");
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(submenu), about);
+
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), submenu);
 
     statusbar = gtk_statusbar_new();
 
@@ -879,6 +922,8 @@ int vncviewer(gchar ** args)
                      G_CALLBACK(do_fullscreen), window);
     g_signal_connect(scaling, "toggled",
                      G_CALLBACK(do_scaling), vnc);
+    g_signal_connect(about, "activate",
+                     G_CALLBACK(do_about), window);
 #if WITH_LIBVIEW
     g_signal_connect(window, "window-state-event",
                      G_CALLBACK(window_state_event), layout);
