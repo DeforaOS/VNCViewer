@@ -305,13 +305,14 @@ static void vnc_desktop_resize(GtkWidget *vncdisplay G_GNUC_UNUSED,
     set_status("Remote desktop size changed to %dx%d", width, height);
 }
 
-static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED)
+static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED,
+		GtkWidget *window)
 {
     if(connected)
         set_status("Disconnected from server");
     else
         set_status("Failed to connect to server");
-    gtk_main_quit();
+    gtk_widget_show_all(window);
 }
 
 static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
@@ -891,7 +892,7 @@ int vncviewer(gchar ** args)
     g_signal_connect(vnc, "vnc-initialized",
                      G_CALLBACK(vnc_initialized), window);
     g_signal_connect(vnc, "vnc-disconnected",
-                     G_CALLBACK(vnc_disconnected), NULL);
+                     G_CALLBACK(vnc_disconnected), window);
     g_signal_connect(vnc, "vnc-auth-credential",
                      G_CALLBACK(vnc_credential), NULL);
     g_signal_connect(vnc, "vnc-auth-failure",
