@@ -139,11 +139,18 @@ static void set_title(VncDisplay *vncdisplay, GtkWidget *window,
     gchar *seqstr = vnc_grab_sequence_as_string(seq);
     gchar *title;
 
-    if (grabbed)
-        title = g_strdup_printf("(Press %s to release pointer) %s - " PACKAGE,
-                                seqstr, name);
-    else
+    if (grabbed) {
+		if (name != NULL)
+		    title = g_strdup_printf("(Press %s to release pointer) %s - "
+							PACKAGE, seqstr, name);
+		else
+		    title = g_strdup_printf("(Press %s to release pointer) "
+							PACKAGE, seqstr);
+	}
+    else if(name != NULL)
         title = g_strdup_printf("%s - " PACKAGE, name);
+    else
+        title = g_strdup(PACKAGE);
 
     gtk_window_set_title(GTK_WINDOW(window), title);
 
