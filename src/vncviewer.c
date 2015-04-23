@@ -99,6 +99,7 @@ static VncAudioPulse *pa = NULL;
 #endif
 
 static GtkWidget *vnc;
+static GtkWidget *statusbar;
 
 typedef struct {
     GtkWidget *label;
@@ -752,13 +753,17 @@ int vncviewer(gchar ** args)
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(settings), submenu);
 
+    statusbar = gtk_statusbar_new();
+
 #if WITH_LIBVIEW
     ViewAutoDrawer_SetActive(VIEW_AUTODRAWER(layout), FALSE);
     ViewOvBox_SetOver(VIEW_OV_BOX(layout), menubar);
     ViewOvBox_SetUnder(VIEW_OV_BOX(layout), vnc);
+    ViewOvBox_SetUnder(VIEW_OV_BOX(layout), statusbar);
 #else
     gtk_box_pack_start(GTK_BOX(layout), menubar, FALSE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(layout), vnc, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(layout), statusbar, FALSE, TRUE, 0);
 #endif
     gtk_container_add(GTK_CONTAINER(window), layout);
     gtk_widget_realize(vnc);
