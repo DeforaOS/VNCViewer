@@ -676,6 +676,9 @@ int vncviewer(gchar ** args)
     GtkWidget *scaling;
     GtkWidget *showgrabkeydlg;
     GSList *accels;
+    gchar *tmp;
+    gchar *hostname;
+    gchar *port;
 
     vnc = vnc_display_new();
 
@@ -788,10 +791,6 @@ int vncviewer(gchar ** args)
         g_object_unref(addr);
     } else {
 #endif
-        gchar *tmp;
-        gchar *hostname;
-        gchar *port;
-
         if (g_str_equal(args[0], ""))
             hostname = g_strdup("127.0.0.1");
         else
