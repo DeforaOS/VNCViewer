@@ -646,8 +646,9 @@ int vncviewer(gchar ** args)
     GtkWidget *window;
     GtkWidget *layout;
     GtkWidget *menubar;
-    GtkWidget *sendkey, *view, *settings;
+    GtkWidget *file, *sendkey, *view, *settings;
     GtkWidget *submenu;
+    GtkWidget *close;
     GtkWidget *caf1;
     GtkWidget *caf2;
     GtkWidget *caf3;
@@ -678,6 +679,14 @@ int vncviewer(gchar ** args)
 #endif
 
     gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
+
+    file = gtk_menu_item_new_with_mnemonic("_File");
+    gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file);
+
+    submenu = gtk_menu_new();
+    close = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLOSE, NULL);
+    gtk_menu_shell_append(GTK_MENU_SHELL(submenu), close);
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(file), submenu);
 
     sendkey = gtk_menu_item_new_with_mnemonic("_Send Key");
     gtk_menu_shell_append(GTK_MENU_SHELL(menubar), sendkey);
@@ -822,6 +831,9 @@ int vncviewer(gchar ** args)
 
     g_signal_connect(window, "key-press-event",
                      G_CALLBACK(vnc_screenshot), vnc);
+
+    g_signal_connect(close, "activate",
+                     G_CALLBACK(gtk_main_quit), vnc);
 
     g_signal_connect(caf1, "activate",
                      G_CALLBACK(send_caf1), vnc);
