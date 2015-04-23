@@ -118,8 +118,9 @@ static void set_status(char const * format, ...)
 {
 	va_list ap;
 
+	fputs(PROGNAME ": ", stderr);
 	va_start(ap, format);
-	vprintf(format, ap);
+	vfprintf(stderr, format, ap);
 	va_end(ap);
 }
 
