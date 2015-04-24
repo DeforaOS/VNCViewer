@@ -102,6 +102,7 @@ static VncAudioPulse *pa = NULL;
 #endif
 
 static GtkWidget *vnc = NULL;
+static GtkWidget *status;
 static GtkWidget *statusbar;
 
 static char const * authors[] = {
@@ -273,6 +274,8 @@ static int connected = 0;
 static void vnc_connected(GtkWidget *vncdisplay G_GNUC_UNUSED)
 {
     set_status("Connected to server");
+    gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_CONNECT,
+		    GTK_ICON_SIZE_MENU);
     connected = 1;
 }
 
@@ -315,7 +318,10 @@ static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED,
         set_status("Disconnected from server");
     else
         set_status("Failed to connect to server");
+    gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_DISCONNECT,
+		    GTK_ICON_SIZE_MENU);
     gtk_widget_show_all(window);
+    connected = 0;
 }
 
 static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
@@ -732,6 +738,7 @@ int vncviewer(gchar ** args)
     GtkWidget *scaling;
     GtkWidget *about;
     GtkWidget *showgrabkeydlg;
+    GtkWidget *widget;
     GSList *accels;
     gchar *tmp;
     gchar *hostname;
@@ -826,18 +833,26 @@ int vncviewer(gchar ** args)
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), submenu);
 
+#if GTK_CHECK_VERSION(3, 0, 0)
+    widget = gtk_box_new(GTK_BOX_HORIZONTAL, 4);
+#else
+    widget = gtk_hbox_new(FALSE, 4);
+#endif
+    status = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start(GTK_BOX(widget), status, FALSE, TRUE, 0);
     statusbar = gtk_statusbar_new();
     gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), FALSE);
+    gtk_box_pack_start(GTK_BOX(widget), statusbar, TRUE, TRUE, 0);
 
 #if WITH_LIBVIEW
     ViewAutoDrawer_SetActive(VIEW_AUTODRAWER(layout), FALSE);
     ViewOvBox_SetOver(VIEW_OV_BOX(layout), menubar);
     ViewOvBox_SetUnder(VIEW_OV_BOX(layout), vnc);
-    ViewOvBox_SetUnder(VIEW_OV_BOX(layout), statusbar);
+    ViewOvBox_SetUnder(VIEW_OV_BOX(layout), widget);
 #else
     gtk_box_pack_start(GTK_BOX(layout), menubar, FALSE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(layout), vnc, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(layout), statusbar, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(layout), widget, FALSE, TRUE, 0);
 #endif
     gtk_container_add(GTK_CONTAINER(window), layout);
     gtk_widget_realize(vnc);
