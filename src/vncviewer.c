@@ -841,7 +841,7 @@ int vncviewer(gchar ** args)
     status = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
     gtk_box_pack_start(GTK_BOX(widget), status, FALSE, TRUE, 0);
     statusbar = gtk_statusbar_new();
-    gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), FALSE);
+    gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), TRUE);
     gtk_box_pack_start(GTK_BOX(widget), statusbar, TRUE, TRUE, 0);
 
 #if WITH_LIBVIEW
