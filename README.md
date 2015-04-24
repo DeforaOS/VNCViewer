@@ -7,7 +7,8 @@ About VNCViewer
 This program is meant to be used as a client for the VNC remote desktop sharing
 protocol.
 
-This project is originally based on an example file from the gtk-vnc library.
+This project is originally based on an example file from the gtk-vnc library
+(https://wiki.gnome.org/Projects/gtk-vnc).
 
 Compiling Panel
 ---------------
