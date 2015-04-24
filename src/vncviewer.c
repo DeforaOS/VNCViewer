@@ -827,6 +827,7 @@ int vncviewer(gchar ** args)
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), submenu);
 
     statusbar = gtk_statusbar_new();
+    gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), FALSE);
 
 #if WITH_LIBVIEW
     ViewAutoDrawer_SetActive(VIEW_AUTODRAWER(layout), FALSE);
