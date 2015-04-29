@@ -276,6 +276,9 @@ static void vnc_connected(GtkWidget *vncdisplay G_GNUC_UNUSED)
     set_status("Connected to server");
     gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_CONNECT,
 		    GTK_ICON_SIZE_MENU);
+#if GTK_CHECK_VERSION(2, 12, 0)
+    gtk_widget_set_tooltip_text(status, "Connected");
+#endif
     connected = 1;
 }
 
@@ -320,6 +323,9 @@ static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED,
         set_status("Failed to connect to server");
     gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_DISCONNECT,
 		    GTK_ICON_SIZE_MENU);
+#if GTK_CHECK_VERSION(2, 12, 0)
+    gtk_widget_set_tooltip_text(status, "Disconnected");
+#endif
     gtk_widget_show_all(window);
     connected = 0;
 }
@@ -839,6 +845,9 @@ int vncviewer(gchar ** args)
     widget = gtk_hbox_new(FALSE, 4);
 #endif
     status = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
+#if GTK_CHECK_VERSION(2, 12, 0)
+    gtk_widget_set_tooltip_text(status, "Disconnected");
+#endif
     gtk_box_pack_start(GTK_BOX(widget), status, FALSE, TRUE, 0);
     statusbar = gtk_statusbar_new();
     gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), TRUE);
