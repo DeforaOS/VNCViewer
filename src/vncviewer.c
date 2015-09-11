@@ -23,8 +23,6 @@ static char const _license[] =
 "Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA";
 /* FIXME disable grabbing mouse/keyboard on disconnect!!1 */
 
-#include "../config.h"
-
 #include <vncdisplay.h>
 #include <vncutil.h>
 #ifdef HAVE_PULSEAUDIO
@@ -46,6 +44,8 @@ static char const _license[] =
 #endif
 
 #include "vncviewer.h"
+
+#include "../config.h"
 
 /* constants */
 #ifndef PROGNAME
@@ -439,9 +439,9 @@ static void do_fullscreen(GtkWidget *menu, GtkWidget *window)
 {
     if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menu))) {
 		gtk_widget_hide(statusbar);
-        gtk_window_fullscreen(GTK_WINDOW(window));
+		gtk_window_fullscreen(GTK_WINDOW(window));
 	} else {
-        gtk_window_unfullscreen(GTK_WINDOW(window));
+		gtk_window_unfullscreen(GTK_WINDOW(window));
 		gtk_widget_show(statusbar);
 	}
 }
@@ -461,10 +461,8 @@ static void dialog_update_keysyms(GtkWidget *window, guint *keysyms, guint numsy
 
     keys = g_strdup("");
     for (i = 0; i < numsyms; i++)
-        {
             keys = g_strdup_printf("%s%s%s", keys,
                                    (strlen(keys) > 0) ? "+" : " ", gdk_keyval_name(keysyms[i]));
-        }
 
     gtk_label_set_text( GTK_LABEL(window), keys);
 }
@@ -534,14 +532,12 @@ static gboolean dialog_key_release(GtkWidget *window G_GNUC_UNUSED,
     }
 
     for (i = 0; i < defs->curkeys; i++)
-        {
             if (defs->keysyms[i] == ev->key.keyval)
                 {
                     defs->keysyms[i] = defs->keysyms[defs->curkeys - 1];
                     defs->curkeys--;
                     defs->keysyms = g_renew(guint, defs->keysyms, defs->curkeys);
                 }
-        }
 
     dialog_update_keysyms(defs->label, defs->keysyms, defs->curkeys);
 
