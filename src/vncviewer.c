@@ -107,7 +107,7 @@ static GtkWidget *vnc = NULL;
 static GtkWidget *status;
 static GtkWidget *statusbar;
 
-static char const * authors[] = {
+static char const * _authors[] = {
 	"Anthony Liguori <anthony@codemonkey.ws>",
 	"Pierre Pronchery <khorben@defora.org>",
 	NULL
@@ -418,7 +418,7 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 
 	dialog = gtk_about_dialog_new();
 	gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(window));
-	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), _authors);
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
 			"VNC viewer for the DeforaOS desktop");
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _copyright);
