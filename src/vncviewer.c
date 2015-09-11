@@ -1,5 +1,7 @@
 /* $Id$ */
-/* Copyright (c) 2015 Pierre Pronchery <khorben@defora.org> */
+static char const _copyright[] =
+"Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
+"Copyright © 2015 Pierre Pronchery <khorben@defora.org>";
 /* This file is part of DeforaOS Desktop VNCViewer */
 /* Originally based on:
  * GTK VNC Widget
@@ -413,16 +415,13 @@ static void send_cab(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void do_about(GtkWidget *menu, GtkWidget *window)
 {
 	GtkWidget *dialog;
-	char const copyright[] =
-		"Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
-		"Copyright © 2015 Pierre Pronchery <khorben@defora.org>";
 
 	dialog = gtk_about_dialog_new();
 	gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(window));
 	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
 			"VNC viewer for the DeforaOS desktop");
-	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), copyright);
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _copyright);
 #if GTK_CHECK_VERSION(2, 12, 0)
 	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), PACKAGE);
 #else
