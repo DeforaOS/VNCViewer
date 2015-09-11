@@ -3,25 +3,25 @@ static char const _copyright[] =
 "Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
 "Copyright © 2015 Pierre Pronchery <khorben@defora.org>";
 /* This file is part of DeforaOS Desktop VNCViewer */
-/* Originally based on:
- * GTK VNC Widget
- *
- * Copyright (c) 2006 Anthony Liguori <anthony@codemonkey.ws>
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.0 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
- */
+static char const _license[] =
+"This software is originally based on the GTK VNC Widget library.\n"
+"\n"
+"Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
+"\n"
+"This library is free software; you can redistribute it and/or\n"
+"modify it under the terms of the GNU Lesser General Public\n"
+"License as published by the Free Software Foundation; either\n"
+"version 2.0 of the License, or (at your option) any later version.\n"
+"\n"
+"This library is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n"
+"Lesser General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU Lesser General Public\n"
+"License along with this library; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA";
+/* FIXME disable grabbing mouse/keyboard on disconnect!!1 */
 
 #include "../config.h"
 
@@ -422,6 +422,7 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
 			"VNC viewer for the DeforaOS desktop");
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _copyright);
+	gtk_about_dialog_set_license(GTK_ABOUT_DIALOG(dialog), _license);
 #if GTK_CHECK_VERSION(2, 12, 0)
 	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), PACKAGE);
 #else
