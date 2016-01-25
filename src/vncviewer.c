@@ -181,9 +181,12 @@ static gboolean vnc_screenshot(GtkWidget *window G_GNUC_UNUSED,
                                GdkEvent *ev, GtkWidget *vncdisplay)
 {
     const char filename[] = "vncviewer.png";
+    GdkPixbuf * pix;
 
-    if (ev->key.keyval == GDK_F11) {
-        GdkPixbuf *pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay));
+    if (ev->key.keyval == GDK_F11
+		    && (pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay)))
+		    != NULL)
+    {
         gdk_pixbuf_save(pix, filename, "png", NULL, "tEXt::Generator App", "vncviewer", NULL);
         g_object_unref(pix);
         set_status("Screenshot saved to %s", filename);
