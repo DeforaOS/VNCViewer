@@ -1,0 +1,10 @@
+[Desktop Entry]
+GenericName=VNC client
+Name=VNCViewer
+Comment=Connect to remote desktops over VNC
+TryExec=vncviewer
+Exec=vncviewer
+Icon=gnome-remote-desktop
+Type=Application
+Categories=Network;VNC;GTK;
+StartupNotify=true
