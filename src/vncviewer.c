@@ -558,9 +558,9 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
     dialog = gtk_dialog_new_with_buttons ("Key recorder",
                                           GTK_WINDOW(window),
                                           GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                          "_Ok",
+                                          GTK_STOCK_OK,
                                           GTK_RESPONSE_ACCEPT,
-                                          "_Cancel",
+                                          GTK_STOCK_CANCEL,
                                           GTK_RESPONSE_REJECT,
                                           NULL);
 
@@ -625,9 +625,9 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
         dialog = gtk_dialog_new_with_buttons("Authentication required",
                                              NULL,
                                              0,
-                                             "_Cancel",
+                                             GTK_STOCK_CANCEL,
                                              GTK_RESPONSE_CANCEL,
-                                             "_Ok",
+                                             GTK_STOCK_OK,
                                              GTK_RESPONSE_OK,
                                              NULL);
         gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
