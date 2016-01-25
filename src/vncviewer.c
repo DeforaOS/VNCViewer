@@ -558,10 +558,10 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
     dialog = gtk_dialog_new_with_buttons ("Key recorder",
                                           GTK_WINDOW(window),
                                           GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                          GTK_STOCK_OK,
-                                          GTK_RESPONSE_ACCEPT,
                                           GTK_STOCK_CANCEL,
                                           GTK_RESPONSE_REJECT,
+                                          GTK_STOCK_OK,
+                                          GTK_RESPONSE_ACCEPT,
                                           NULL);
 
     label = gtk_label_new("Please press desired grab key combination");
