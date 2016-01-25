@@ -581,7 +581,11 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
     g_signal_connect(dialog, "key-release-event",
                      G_CALLBACK(dialog_key_release), defs);
     gtk_widget_set_size_request(dialog, 300, 100);
+#if GTK_CHECK_VERSION(2, 14, 0)
     content_area = gtk_dialog_get_content_area( GTK_DIALOG(dialog) );
+#else
+    content_area = dialog->vbox;
+#endif
     gtk_container_add( GTK_CONTAINER(content_area), label);
     gtk_widget_show_all(dialog);
 
