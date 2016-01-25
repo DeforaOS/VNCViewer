@@ -560,16 +560,22 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
     GtkWidget *dialog, *content_area, *label;
     gint result;
 
-    dialog = gtk_dialog_new_with_buttons ("Key recorder",
-                                          GTK_WINDOW(window),
-                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                          GTK_STOCK_CANCEL,
-                                          GTK_RESPONSE_REJECT,
-                                          GTK_STOCK_OK,
-                                          GTK_RESPONSE_ACCEPT,
-                                          NULL);
+    dialog = gtk_message_dialog_new(GTK_WINDOW(window),
+		    GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+		    GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK_CANCEL,
+#if GTK_CHECK_VERSION(2, 6, 0)
+		    "%s", "Key recorder");
+    gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+#endif
+		    "Please press desired grab key combination");
+#if GTK_CHECK_VERSION(2, 10, 0)
+    gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog),
+		    gtk_image_new_from_stock(GTK_STOCK_MEDIA_RECORD,
+			    GTK_ICON_SIZE_DIALOG));
+#endif
+    gtk_window_set_title(GTK_WINDOW(dialog), "Key recorder");
 
-    label = gtk_label_new("Please press desired grab key combination");
+    label = gtk_label_new("");
     defs = g_new(VncGrabDefs, 1);
     defs->label = label;
     defs->keysyms = 0;
@@ -580,7 +586,6 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
                      G_CALLBACK(dialog_key_press), defs);
     g_signal_connect(dialog, "key-release-event",
                      G_CALLBACK(dialog_key_release), defs);
-    gtk_widget_set_size_request(dialog, 300, 100);
 #if GTK_CHECK_VERSION(2, 14, 0)
     content_area = gtk_dialog_get_content_area( GTK_DIALOG(dialog) );
 #else
