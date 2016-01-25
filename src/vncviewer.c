@@ -636,15 +636,21 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
     if (prompt) {
         GtkWidget **label, **entry, *box, *vbox;
         int row;
-        dialog = gtk_dialog_new_with_buttons("Authentication required",
-                                             NULL,
-                                             0,
-                                             GTK_STOCK_CANCEL,
-                                             GTK_RESPONSE_CANCEL,
-                                             GTK_STOCK_OK,
-                                             GTK_RESPONSE_OK,
-                                             NULL);
-        gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
+        dialog = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_QUESTION,
+			GTK_BUTTONS_OK_CANCEL,
+#if GTK_CHECK_VERSION(2, 6, 0)
+		    "%s", "Authentication required");
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+#endif
+		    "");
+#if GTK_CHECK_VERSION(2, 10, 0)
+	gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog),
+			gtk_image_new_from_stock(
+				GTK_STOCK_DIALOG_AUTHENTICATION,
+				GTK_ICON_SIZE_DIALOG));
+#endif
+	gtk_window_set_title(GTK_WINDOW(dialog), "Authentication required");
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
 
         box = gtk_table_new(credList->n_values, 2, FALSE);
         label = g_new(GtkWidget *, prompt);
