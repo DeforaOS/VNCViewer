@@ -427,7 +427,7 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 	gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(window));
 	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), _authors);
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
-			"VNC viewer for the DeforaOS desktop");
+			"VNC client for the DeforaOS desktop");
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _copyright);
 	gtk_about_dialog_set_logo_icon_name(GTK_ABOUT_DIALOG(dialog),
 			"gnome-remote-desktop");
