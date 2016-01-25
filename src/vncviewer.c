@@ -424,6 +424,8 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
 			"VNC viewer for the DeforaOS desktop");
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _copyright);
+	gtk_about_dialog_set_logo_icon_name(GTK_ABOUT_DIALOG(dialog),
+			"gnome-remote-desktop");
 	gtk_about_dialog_set_license(GTK_ABOUT_DIALOG(dialog), _license);
 #if GTK_CHECK_VERSION(2, 12, 0)
 	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), PACKAGE);
@@ -751,6 +753,7 @@ int vncviewer(gchar ** args)
     vnc = vnc_display_new();
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_icon_name(GTK_WINDOW(window), "gnome-remote-desktop");
 #if WITH_LIBVIEW
     layout = ViewAutoDrawer_New();
 #else
