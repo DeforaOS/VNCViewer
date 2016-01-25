@@ -63,7 +63,7 @@ static char * _vncviewer_get_hostname(void)
 			gtk_image_new_from_icon_name("gnome-remote-desktop",
 				GTK_ICON_SIZE_DIALOG));
 #endif
-	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CANCEL,
+	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_QUIT,
 			GTK_RESPONSE_REJECT);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CONNECT,
 			GTK_RESPONSE_ACCEPT);
@@ -87,12 +87,13 @@ static char * _vncviewer_get_hostname(void)
 
 
 /* main */
+static gboolean _main_on_idle(gpointer data);
+
 int main(int argc, char **argv)
 {
-    gchar *name, *hostname = NULL;
+    gchar *name;
     GOptionContext *context;
     GError *error = NULL;
-    gchar ** args2[2] = { NULL, NULL };
 
     name = g_strdup_printf("- Simple VNC Client on Gtk-VNC %s",
                            vnc_util_get_version_string());
@@ -108,14 +109,27 @@ int main(int argc, char **argv)
         return 1;
     }
     if (!args || (g_strv_length(args) != 1)) {
-	    if((hostname = _vncviewer_get_hostname()) == NULL)
-		    return 0;
-	    args2[0] = hostname;
-	    args = args2;
+	    g_idle_add(_main_on_idle, NULL);
+    } else {
+	    vncviewer(args);
     }
-    vncviewer(args);
     gtk_main();
-    g_free(hostname);
 
     return 0;
+}
+
+static gboolean _main_on_idle(gpointer data)
+{
+	gchar * hostname;
+	gchar * args[2] = { NULL, NULL };
+	(void) data;
+
+	if((hostname = _vncviewer_get_hostname()) == NULL)
+		gtk_main_quit();
+	else
+	{
+		args[0] = hostname;
+		vncviewer(args);
+	}
+	return FALSE;
 }
