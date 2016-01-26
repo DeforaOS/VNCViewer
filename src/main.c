@@ -21,15 +21,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
  */
 
+#include <locale.h>
+#include <libintl.h>
 #include <gtk/gtk.h>
 #include <vncdisplay.h>
 #include <vncutil.h>
 #include "vncviewer.h"
 #include "../config.h"
+#define _(string) gettext(string)
 
 /* constants */
 #ifndef PROGNAME
 # define PROGNAME "vncviewer"
+#endif
+#ifndef PREFIX
+# define PREFIX		"/usr/local"
+#endif
+#ifndef DATADIR
+# define DATADIR	PREFIX "/share"
+#endif
+#ifndef LOCALEDIR
+# define LOCALEDIR	DATADIR "/locale"
 #endif
 
 
@@ -43,6 +55,16 @@ static const GOptionEntry options [] =
     };
 
 
+/* vncviewer_error */
+static int _vncviewer_error(char const * message, int ret)
+{
+	fputs(PROGNAME ": ", stderr);
+	perror(message);
+	return ret;
+}
+
+
+/* vncviewer_get_hostname */
 static char * _vncviewer_get_hostname(void)
 {
 	GtkWidget * dialog;
@@ -57,7 +79,7 @@ static char * _vncviewer_get_hostname(void)
 			"%s", PACKAGE);
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
 #endif
-			"Please choose a hostname to connect to");
+			_("Please choose a hostname to connect to"));
 #if GTK_CHECK_VERSION(2, 10, 0)
 	gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog),
 			gtk_image_new_from_icon_name("gnome-remote-desktop",
@@ -71,7 +93,7 @@ static char * _vncviewer_get_hostname(void)
 			GTK_RESPONSE_ACCEPT);
 	gtk_window_set_title(GTK_WINDOW(dialog), PACKAGE);
 	box = gtk_hbox_new(FALSE, 4);
-	widget = gtk_label_new("Hostname: ");
+	widget = gtk_label_new(_("Hostname: "));
 	gtk_box_pack_start(GTK_BOX(box), widget, FALSE, TRUE, 0);
 	widget = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(widget), TRUE);
@@ -95,8 +117,13 @@ int main(int argc, char **argv)
     GOptionContext *context;
     GError *error = NULL;
 
-    name = g_strdup_printf("- Simple VNC Client on Gtk-VNC %s",
-                           vnc_util_get_version_string());
+    if(setlocale(LC_ALL, "") == NULL)
+	    _vncviewer_error("setlocale", 1);
+    bindtextdomain(PACKAGE, LOCALEDIR);
+    textdomain(PACKAGE);
+    name = g_strdup_printf("- %s %s",
+		    _("Simple VNC Client on Gtk-VNC"),
+		    vnc_util_get_version_string());
     /* Setup command line options */
     context = g_option_context_new (name);
     g_option_context_add_main_entries (context, options, NULL);

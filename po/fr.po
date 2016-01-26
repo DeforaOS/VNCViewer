@@ -1,0 +1,230 @@
+# $Id$
+# Copyright (c) 2016 Pierre Pronchery <khorben@defora.org>
+# This file is distributed under the same license as the VNCViewer package.
+# Pierre Pronchery <khorben@defora.org>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VNCViewer 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-26 00:59+0100\n"
+"PO-Revision-Date: 2016-01-26 00:46+0100\n"
+"Last-Translator: Pierre Pronchery <khorben@defora.org>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../src/main.c:82
+msgid "Please choose a hostname to connect to"
+msgstr ""
+
+#: ../src/main.c:96
+msgid "Hostname: "
+msgstr ""
+
+#: ../src/main.c:125
+msgid "Simple VNC Client on Gtk-VNC"
+msgstr ""
+
+#: ../src/vncviewer.c:164
+#, c-format
+msgid "%s - %s (Press %s to release pointer)"
+msgstr ""
+
+#: ../src/vncviewer.c:168
+#, c-format
+msgid "%s (Press %s to release pointer)"
+msgstr ""
+
+#: ../src/vncviewer.c:194
+#, c-format
+msgid "Screenshot saved to %s"
+msgstr ""
+
+#: ../src/vncviewer.c:287
+msgid "Connected to server"
+msgstr ""
+
+#: ../src/vncviewer.c:291
+msgid "Connected"
+msgstr ""
+
+#: ../src/vncviewer.c:298
+msgid "Connection initialized"
+msgstr ""
+
+#: ../src/vncviewer.c:319
+#, c-format
+msgid "Authentication failed '%s'"
+msgstr ""
+
+#: ../src/vncviewer.c:325
+#, c-format
+msgid "Remote desktop size changed to %dx%d"
+msgstr ""
+
+#: ../src/vncviewer.c:332
+msgid "Disconnected from server"
+msgstr ""
+
+#: ../src/vncviewer.c:334
+msgid "Failed to connect to server"
+msgstr ""
+
+#: ../src/vncviewer.c:338 ../src/vncviewer.c:875
+msgid "Disconnected"
+msgstr ""
+
+#: ../src/vncviewer.c:347
+msgid "Sending Ctrl+Alt+F1"
+msgstr ""
+
+#: ../src/vncviewer.c:355
+msgid "Sending Ctrl+Alt+F2"
+msgstr ""
+
+#: ../src/vncviewer.c:363
+msgid "Sending Ctrl+Alt+F3"
+msgstr ""
+
+#: ../src/vncviewer.c:371
+msgid "Sending Ctrl+Alt+F4"
+msgstr ""
+
+#: ../src/vncviewer.c:379
+msgid "Sending Ctrl+Alt+F5"
+msgstr ""
+
+#: ../src/vncviewer.c:387
+msgid "Sending Ctrl+Alt+F6"
+msgstr ""
+
+#: ../src/vncviewer.c:395
+msgid "Sending Ctrl+Alt+F7"
+msgstr ""
+
+#: ../src/vncviewer.c:403
+msgid "Sending Ctrl+Alt+F8"
+msgstr ""
+
+#: ../src/vncviewer.c:411
+msgid "Sending Ctrl+Alt+Delete"
+msgstr ""
+
+#: ../src/vncviewer.c:419
+msgid "Sending Ctrl+Alt+Backspace"
+msgstr ""
+
+#: ../src/vncviewer.c:432
+msgid "VNC client for the DeforaOS desktop"
+msgstr ""
+
+#: ../src/vncviewer.c:569 ../src/vncviewer.c:578
+msgid "Key recorder"
+msgstr ""
+
+#: ../src/vncviewer.c:572
+msgid "Please press desired grab key combination"
+msgstr ""
+
+#: ../src/vncviewer.c:620
+#, c-format
+msgid "Got credential request for %d credential(s)"
+msgstr ""
+
+#: ../src/vncviewer.c:645 ../src/vncviewer.c:655
+msgid "Authentication required"
+msgstr ""
+
+#: ../src/vncviewer.c:667
+msgid "Username: "
+msgstr ""
+
+#: ../src/vncviewer.c:670
+msgid "Password: "
+msgstr ""
+
+#: ../src/vncviewer.c:713
+#, c-format
+msgid "Failed to set credential type %d"
+msgstr ""
+
+#: ../src/vncviewer.c:718
+#, c-format
+msgid "Unsupported credential type %d"
+msgstr ""
+
+#: ../src/vncviewer.c:797
+msgid "_File"
+msgstr ""
+
+#: ../src/vncviewer.c:805
+msgid "_Send Key"
+msgstr ""
+
+#: ../src/vncviewer.c:810
+msgid "Ctrl+Alt+F_1"
+msgstr ""
+
+#: ../src/vncviewer.c:811
+msgid "Ctrl+Alt+F_2"
+msgstr ""
+
+#: ../src/vncviewer.c:812
+msgid "Ctrl+Alt+F_3"
+msgstr ""
+
+#: ../src/vncviewer.c:813
+msgid "Ctrl+Alt+F_4"
+msgstr ""
+
+#: ../src/vncviewer.c:814
+msgid "Ctrl+Alt+F_5"
+msgstr ""
+
+#: ../src/vncviewer.c:815
+msgid "Ctrl+Alt+F_6"
+msgstr ""
+
+#: ../src/vncviewer.c:816
+msgid "Ctrl+Alt+F_7"
+msgstr ""
+
+#: ../src/vncviewer.c:817
+msgid "Ctrl+Alt+F_8"
+msgstr ""
+
+#: ../src/vncviewer.c:818
+msgid "Ctrl+Alt+_Del"
+msgstr ""
+
+#: ../src/vncviewer.c:819
+msgid "Ctrl+Alt+_Backspace"
+msgstr ""
+
+#: ../src/vncviewer.c:834
+msgid "_View"
+msgstr ""
+
+#: ../src/vncviewer.c:839
+msgid "_Full Screen"
+msgstr ""
+
+#: ../src/vncviewer.c:840
+msgid "Scaled display"
+msgstr ""
+
+#: ../src/vncviewer.c:847
+msgid "_Settings"
+msgstr ""
+
+#: ../src/vncviewer.c:852
+msgid "_Set grab keys"
+msgstr ""
+
+#: ../src/vncviewer.c:857
+msgid "_Help"
+msgstr ""
