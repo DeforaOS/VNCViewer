@@ -866,7 +866,7 @@ int vncviewer(gchar ** args)
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), submenu);
 
 #if GTK_CHECK_VERSION(3, 0, 0)
-    widget = gtk_box_new(GTK_BOX_HORIZONTAL, 4);
+    widget = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 #else
     widget = gtk_hbox_new(FALSE, 4);
 #endif
@@ -876,7 +876,9 @@ int vncviewer(gchar ** args)
 #endif
     gtk_box_pack_start(GTK_BOX(widget), status, FALSE, TRUE, 0);
     statusbar = gtk_statusbar_new();
+#if !GTK_CHECK_VERSION(3, 0, 0)
     gtk_statusbar_set_has_resize_grip(GTK_STATUSBAR(statusbar), TRUE);
+#endif
     gtk_box_pack_start(GTK_BOX(widget), statusbar, TRUE, TRUE, 0);
 
 #if WITH_LIBVIEW
