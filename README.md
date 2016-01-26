@@ -10,10 +10,10 @@ protocol.
 This project is originally based on an example file from the gtk-vnc library
 (https://wiki.gnome.org/Projects/gtk-vnc).
 
-Compiling Panel
----------------
+Compiling VNCViewer
+-------------------
 
-The current requirements for compiling Panel are as follows:
+The current requirements for compiling VNCViewer are as follows:
  * Gtk+ 2.4 or later, or Gtk+ 3.0 or later
  * the gtk-vnc library
  * an implementation of `make`
@@ -34,8 +34,8 @@ The compilation process supports a number of options, such as PREFIX and DESTDIR
 for packaging and portability, or OBJDIR for compilation outside of the source
 tree.
 
-Distributing Panel
-------------------
+Distributing VNCViewer
+----------------------
 
-DeforaOS Panel is subject to the terms of the LGPL license, version 2.0. Please
-see the `COPYING` file for more information.
+DeforaOS VNCViewer is subject to the terms of the LGPL license, version 2.0.
+Please see the `COPYING` file for more information.
