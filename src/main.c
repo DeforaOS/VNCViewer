@@ -92,7 +92,11 @@ static char * _vncviewer_get_hostname(void)
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 			GTK_RESPONSE_ACCEPT);
 	gtk_window_set_title(GTK_WINDOW(dialog), PACKAGE);
+#if GTK_CHECK_VERSION(3, 0, 0)
+	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
+#else
 	box = gtk_hbox_new(FALSE, 4);
+#endif
 	widget = gtk_label_new(_("Hostname: "));
 	gtk_box_pack_start(GTK_BOX(box), widget, FALSE, TRUE, 0);
 	widget = gtk_entry_new();

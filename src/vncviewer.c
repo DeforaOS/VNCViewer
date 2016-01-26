@@ -781,6 +781,8 @@ int vncviewer(gchar ** args)
     gtk_window_set_icon_name(GTK_WINDOW(window), "gnome-remote-desktop");
 #if WITH_LIBVIEW
     layout = ViewAutoDrawer_New();
+#elif GTK_CHECK_VERSION(3, 0, 0)
+    layout = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 #else
     layout = gtk_vbox_new(FALSE, 0);
 #endif
