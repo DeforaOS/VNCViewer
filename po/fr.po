@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../src/main.c:96
 msgid "Hostname: "
-msgstr ""
+msgstr "Hôte : "
 
 #: ../src/main.c:125
 msgid "Simple VNC Client on Gtk-VNC"
@@ -46,11 +46,11 @@ msgstr ""
 
 #: ../src/vncviewer.c:287
 msgid "Connected to server"
-msgstr ""
+msgstr "Connecté au serveur"
 
 #: ../src/vncviewer.c:291
 msgid "Connected"
-msgstr ""
+msgstr "Connecté"
 
 #: ../src/vncviewer.c:298
 msgid "Connection initialized"
@@ -59,7 +59,7 @@ msgstr ""
 #: ../src/vncviewer.c:319
 #, c-format
 msgid "Authentication failed '%s'"
-msgstr ""
+msgstr "Échec lors de l'authentification '%s'"
 
 #: ../src/vncviewer.c:325
 #, c-format
@@ -68,15 +68,15 @@ msgstr ""
 
 #: ../src/vncviewer.c:332
 msgid "Disconnected from server"
-msgstr ""
+msgstr "Déconnecté du serveur"
 
 #: ../src/vncviewer.c:334
 msgid "Failed to connect to server"
-msgstr ""
+msgstr "Échec de la connexion au serveur"
 
 #: ../src/vncviewer.c:338 ../src/vncviewer.c:875
 msgid "Disconnected"
-msgstr ""
+msgstr "Déconnecté"
 
 #: ../src/vncviewer.c:347
 msgid "Sending Ctrl+Alt+F1"
@@ -120,15 +120,15 @@ msgstr ""
 
 #: ../src/vncviewer.c:432
 msgid "VNC client for the DeforaOS desktop"
-msgstr ""
+msgstr "Client VNC pour l'environnement DeforaOS"
 
 #: ../src/vncviewer.c:569 ../src/vncviewer.c:578
 msgid "Key recorder"
-msgstr ""
+msgstr "Enregistreur de combinaisons de touches"
 
 #: ../src/vncviewer.c:572
 msgid "Please press desired grab key combination"
-msgstr ""
+msgstr "Veuillez entrer la combinaison désirée"
 
 #: ../src/vncviewer.c:620
 #, c-format
@@ -137,15 +137,15 @@ msgstr ""
 
 #: ../src/vncviewer.c:645 ../src/vncviewer.c:655
 msgid "Authentication required"
-msgstr ""
+msgstr "Authentification requise"
 
 #: ../src/vncviewer.c:667
 msgid "Username: "
-msgstr ""
+msgstr "Utilisateur : "
 
 #: ../src/vncviewer.c:670
 msgid "Password: "
-msgstr ""
+msgstr "Mot de passe : "
 
 #: ../src/vncviewer.c:713
 #, c-format
@@ -159,7 +159,7 @@ msgstr ""
 
 #: ../src/vncviewer.c:797
 msgid "_File"
-msgstr ""
+msgstr "_Fichier"
 
 #: ../src/vncviewer.c:805
 msgid "_Send Key"
@@ -207,11 +207,11 @@ msgstr ""
 
 #: ../src/vncviewer.c:834
 msgid "_View"
-msgstr ""
+msgstr "_Vue"
 
 #: ../src/vncviewer.c:839
 msgid "_Full Screen"
-msgstr ""
+msgstr "_Plein écran"
 
 #: ../src/vncviewer.c:840
 msgid "Scaled display"
@@ -219,7 +219,7 @@ msgstr ""
 
 #: ../src/vncviewer.c:847
 msgid "_Settings"
-msgstr ""
+msgstr "_Préférences"
 
 #: ../src/vncviewer.c:852
 msgid "_Set grab keys"
@@ -227,4 +227,4 @@ msgstr ""
 
 #: ../src/vncviewer.c:857
 msgid "_Help"
-msgstr ""
+msgstr "_Aide"
