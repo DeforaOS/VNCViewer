@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../src/main.c:82
 msgid "Please choose a hostname to connect to"
-msgstr ""
+msgstr "Veuillez choisir un hôte de la session distante"
 
 #: ../src/main.c:96
 msgid "Hostname: "
@@ -27,22 +27,22 @@ msgstr "Hôte : "
 
 #: ../src/main.c:125
 msgid "Simple VNC Client on Gtk-VNC"
-msgstr ""
+msgstr "Client VNC basé sur Gtk-VNC"
 
 #: ../src/vncviewer.c:164
 #, c-format
 msgid "%s - %s (Press %s to release pointer)"
-msgstr ""
+msgstr "%s - %s (Pressez %s pour libérer le curseur)"
 
 #: ../src/vncviewer.c:168
 #, c-format
 msgid "%s (Press %s to release pointer)"
-msgstr ""
+msgstr "%s (Pressez %s pour libérer le curseur)"
 
 #: ../src/vncviewer.c:194
 #, c-format
 msgid "Screenshot saved to %s"
-msgstr ""
+msgstr "Capture d'écran sauvegardée dans %s"
 
 #: ../src/vncviewer.c:287
 msgid "Connected to server"
@@ -54,7 +54,7 @@ msgstr "Connecté"
 
 #: ../src/vncviewer.c:298
 msgid "Connection initialized"
-msgstr ""
+msgstr "Connexion initialisée"
 
 #: ../src/vncviewer.c:319
 #, c-format
@@ -64,7 +64,7 @@ msgstr "Échec lors de l'authentification '%s'"
 #: ../src/vncviewer.c:325
 #, c-format
 msgid "Remote desktop size changed to %dx%d"
-msgstr ""
+msgstr "La taille de la session distante est maintenant de %dx%d"
 
 #: ../src/vncviewer.c:332
 msgid "Disconnected from server"
@@ -80,39 +80,39 @@ msgstr "Déconnecté"
 
 #: ../src/vncviewer.c:347
 msgid "Sending Ctrl+Alt+F1"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F1"
 
 #: ../src/vncviewer.c:355
 msgid "Sending Ctrl+Alt+F2"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F2"
 
 #: ../src/vncviewer.c:363
 msgid "Sending Ctrl+Alt+F3"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F3"
 
 #: ../src/vncviewer.c:371
 msgid "Sending Ctrl+Alt+F4"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F4"
 
 #: ../src/vncviewer.c:379
 msgid "Sending Ctrl+Alt+F5"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F5"
 
 #: ../src/vncviewer.c:387
 msgid "Sending Ctrl+Alt+F6"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F6"
 
 #: ../src/vncviewer.c:395
 msgid "Sending Ctrl+Alt+F7"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F7"
 
 #: ../src/vncviewer.c:403
 msgid "Sending Ctrl+Alt+F8"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+F8"
 
 #: ../src/vncviewer.c:411
 msgid "Sending Ctrl+Alt+Delete"
-msgstr ""
+msgstr "Envoi de Ctrl+Alt+Suppr"
 
 #: ../src/vncviewer.c:419
 msgid "Sending Ctrl+Alt+Backspace"
@@ -133,7 +133,7 @@ msgstr "Veuillez entrer la combinaison désirée"
 #: ../src/vncviewer.c:620
 #, c-format
 msgid "Got credential request for %d credential(s)"
-msgstr ""
+msgstr "Reçu %d demande(s) d'authentification"
 
 #: ../src/vncviewer.c:645 ../src/vncviewer.c:655
 msgid "Authentication required"
@@ -163,43 +163,43 @@ msgstr "_Fichier"
 
 #: ../src/vncviewer.c:805
 msgid "_Send Key"
-msgstr ""
+msgstr "_Envoi de touche"
 
 #: ../src/vncviewer.c:810
 msgid "Ctrl+Alt+F_1"
-msgstr ""
+msgstr "Ctrl+Alt+F_1"
 
 #: ../src/vncviewer.c:811
 msgid "Ctrl+Alt+F_2"
-msgstr ""
+msgstr "Ctrl+Alt+F_2"
 
 #: ../src/vncviewer.c:812
 msgid "Ctrl+Alt+F_3"
-msgstr ""
+msgstr "Ctrl+Alt+F_3"
 
 #: ../src/vncviewer.c:813
 msgid "Ctrl+Alt+F_4"
-msgstr ""
+msgstr "Ctrl+Alt+F_4"
 
 #: ../src/vncviewer.c:814
 msgid "Ctrl+Alt+F_5"
-msgstr ""
+msgstr "Ctrl+Alt+F_5"
 
 #: ../src/vncviewer.c:815
 msgid "Ctrl+Alt+F_6"
-msgstr ""
+msgstr "Ctrl+Alt+F_6"
 
 #: ../src/vncviewer.c:816
 msgid "Ctrl+Alt+F_7"
-msgstr ""
+msgstr "Ctrl+Alt+F_7"
 
 #: ../src/vncviewer.c:817
 msgid "Ctrl+Alt+F_8"
-msgstr ""
+msgstr "Ctrl+Alt+F_8"
 
 #: ../src/vncviewer.c:818
 msgid "Ctrl+Alt+_Del"
-msgstr ""
+msgstr "Ctrl+Alt+_Suppr"
 
 #: ../src/vncviewer.c:819
 msgid "Ctrl+Alt+_Backspace"
@@ -215,7 +215,7 @@ msgstr "_Plein écran"
 
 #: ../src/vncviewer.c:840
 msgid "Scaled display"
-msgstr ""
+msgstr "Étirer l'affichage"
 
 #: ../src/vncviewer.c:847
 msgid "_Settings"
@@ -223,7 +223,7 @@ msgstr "_Préférences"
 
 #: ../src/vncviewer.c:852
 msgid "_Set grab keys"
-msgstr ""
+msgstr "_Définir la combinaison de focus"
 
 #: ../src/vncviewer.c:857
 msgid "_Help"
