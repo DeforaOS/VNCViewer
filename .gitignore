@@ -1,2 +1,4 @@
 Makefile
 *.o
+/config.h
+/config.sh
