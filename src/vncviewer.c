@@ -21,7 +21,9 @@ static char const _license[] =
 "You should have received a copy of the GNU Lesser General Public\n"
 "License along with this library; if not, write to the Free Software\n"
 "Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA";
-/* FIXME disable grabbing mouse/keyboard on disconnect!!1 */
+/* FIXME:
+ * - disable grabbing mouse/keyboard on disconnect
+ * - fix message dialog when the connection is already busy */
 
 #include <vncdisplay.h>
 #include <vncutil.h>
