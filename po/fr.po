@@ -116,7 +116,7 @@ msgstr "Envoi de Ctrl+Alt+Suppr"
 
 #: ../src/vncviewer.c:419
 msgid "Sending Ctrl+Alt+Backspace"
-msgstr ""
+msgstr "Sending Ctrl+Alt+Retour arrière"
 
 #: ../src/vncviewer.c:432
 msgid "VNC client for the DeforaOS desktop"
@@ -203,7 +203,7 @@ msgstr "Ctrl+Alt+_Suppr"
 
 #: ../src/vncviewer.c:819
 msgid "Ctrl+Alt+_Backspace"
-msgstr ""
+msgstr "Ctrl+Alt+_Retour arrière"
 
 #: ../src/vncviewer.c:834
 msgid "_View"
