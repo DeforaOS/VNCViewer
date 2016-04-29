@@ -135,7 +135,7 @@ static void set_title(VncDisplay *vncdisplay, GtkWidget *window,
     g_free(title);
 }
 
-static void vnc_save_screenshot(GtkWidget *widget G_GNUC_UNUSED, gpointer data)
+static void vnc_screenshot(GtkWidget *widget G_GNUC_UNUSED, gpointer data)
 {
     GtkWidget * vncdisplay = data;
     const char filename[] = "vncviewer.png";
@@ -148,14 +148,6 @@ static void vnc_save_screenshot(GtkWidget *widget G_GNUC_UNUSED, gpointer data)
 	g_object_unref(pix);
 	set_status(_("Screenshot saved to %s"), filename);
     }
-}
-
-static gboolean vnc_screenshot(GtkWidget *window, GdkEvent *ev,
-                               GtkWidget *vncdisplay)
-{
-    if (ev->key.keyval == GDK_KEY_F11)
-        vnc_save_screenshot(window, vncdisplay);
-    return FALSE;
 }
 
 
@@ -941,11 +933,8 @@ int vncviewer(gchar ** args)
                      G_CALLBACK(vnc_key_ungrab), window);
 
 
-    g_signal_connect(window, "key-press-event",
-                     G_CALLBACK(vnc_screenshot), vnc);
-
     g_signal_connect(screenshot, "activate",
-                     G_CALLBACK(vnc_save_screenshot), vnc);
+                     G_CALLBACK(vnc_screenshot), vnc);
 
     g_signal_connect(close, "activate",
                      G_CALLBACK(gtk_main_quit), vnc);
