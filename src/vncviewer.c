@@ -135,20 +135,26 @@ static void set_title(VncDisplay *vncdisplay, GtkWidget *window,
     g_free(title);
 }
 
-static gboolean vnc_screenshot(GtkWidget *window G_GNUC_UNUSED,
-                               GdkEvent *ev, GtkWidget *vncdisplay)
+static void vnc_save_screenshot(GtkWidget *widget G_GNUC_UNUSED, gpointer data)
 {
+    GtkWidget * vncdisplay = data;
     const char filename[] = "vncviewer.png";
     GdkPixbuf * pix;
 
-    if (ev->key.keyval == GDK_KEY_F11
-		    && (pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay)))
-		    != NULL)
+    if((pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay))) != NULL)
     {
-        gdk_pixbuf_save(pix, filename, "png", NULL, "tEXt::Generator App", "vncviewer", NULL);
-        g_object_unref(pix);
-        set_status(_("Screenshot saved to %s"), filename);
+        gdk_pixbuf_save(pix, filename, "png", NULL, "tEXt::Generator App",
+	        "vncviewer", NULL);
+	g_object_unref(pix);
+	set_status(_("Screenshot saved to %s"), filename);
     }
+}
+
+static gboolean vnc_screenshot(GtkWidget *window, GdkEvent *ev,
+                               GtkWidget *vncdisplay)
+{
+    if (ev->key.keyval == GDK_KEY_F11)
+        vnc_save_screenshot(window, vncdisplay);
     return FALSE;
 }
 
@@ -710,6 +716,8 @@ int vncviewer(gchar ** args)
     GtkWidget *menubar;
     GtkWidget *file, *sendkey, *view, *settings, *help;
     GtkWidget *submenu;
+    GtkWidget *screenshot;
+    GtkWidget *menuitem;
     GtkWidget *close;
     GtkWidget *caf1;
     GtkWidget *caf2;
@@ -756,6 +764,13 @@ int vncviewer(gchar ** args)
     gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file);
 
     submenu = gtk_menu_new();
+    screenshot = gtk_image_menu_item_new_with_mnemonic(_("Save _screenshot"));
+    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(screenshot),
+		    gtk_image_new_from_stock(GTK_STOCK_SAVE,
+			    GTK_ICON_SIZE_MENU));
+    gtk_menu_shell_append(GTK_MENU_SHELL(submenu), screenshot);
+    menuitem = gtk_separator_menu_item_new();
+    gtk_menu_shell_append(GTK_MENU_SHELL(submenu), menuitem);
     close = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLOSE, NULL);
     gtk_menu_shell_append(GTK_MENU_SHELL(submenu), close);
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(file), submenu);
@@ -928,6 +943,9 @@ int vncviewer(gchar ** args)
 
     g_signal_connect(window, "key-press-event",
                      G_CALLBACK(vnc_screenshot), vnc);
+
+    g_signal_connect(screenshot, "activate",
+                     G_CALLBACK(vnc_save_screenshot), vnc);
 
     g_signal_connect(close, "activate",
                      G_CALLBACK(gtk_main_quit), vnc);
