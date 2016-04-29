@@ -32,12 +32,12 @@ static char const _license[] =
 #endif
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#include <Desktop.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <libintl.h>
-#include <glib.h>
 #ifdef HAVE_GIOUNIX
 #include <gio/gunixsocketaddress.h>
 #endif
@@ -56,52 +56,6 @@ static char const _license[] =
 # define PROGNAME "vncviewer"
 #endif
 
-
-#ifndef GDK_Return
-# define GDK_Return GDK_KEY_Return
-#endif
-#ifndef GDK_Escape
-# define GDK_Escape GDK_KEY_Escape
-#endif
-#ifndef GDK_BackSpace
-# define GDK_BackSpace GDK_KEY_BackSpace
-#endif
-#ifndef GDK_Delete
-# define GDK_Delete GDK_KEY_Delete
-#endif
-#ifndef GDK_Control_L
-# define GDK_Control_L GDK_KEY_Control_L
-#endif
-#ifndef GDK_Alt_L
-# define GDK_Alt_L GDK_KEY_Alt_L
-#endif
-#ifndef GDK_F1
-# define GDK_F1 GDK_KEY_F1
-#endif
-#ifndef GDK_F2
-# define GDK_F2 GDK_KEY_F2
-#endif
-#ifndef GDK_F3
-# define GDK_F3 GDK_KEY_F3
-#endif
-#ifndef GDK_F4
-# define GDK_F4 GDK_KEY_F4
-#endif
-#ifndef GDK_F5
-# define GDK_F5 GDK_KEY_F5
-#endif
-#ifndef GDK_F6
-# define GDK_F6 GDK_KEY_F6
-#endif
-#ifndef GDK_F7
-# define GDK_F7 GDK_KEY_F7
-#endif
-#ifndef GDK_F8
-# define GDK_F8 GDK_KEY_F8
-#endif
-#ifndef GDK_F11
-# define GDK_F11 GDK_KEY_F11
-#endif
 
 #ifdef HAVE_PULSEAUDIO
 static VncAudioPulse *pa = NULL;
@@ -187,7 +141,7 @@ static gboolean vnc_screenshot(GtkWidget *window G_GNUC_UNUSED,
     const char filename[] = "vncviewer.png";
     GdkPixbuf * pix;
 
-    if (ev->key.keyval == GDK_F11
+    if (ev->key.keyval == GDK_KEY_F11
 		    && (pix = vnc_display_get_pixbuf(VNC_DISPLAY(vncdisplay)))
 		    != NULL)
     {
@@ -345,7 +299,7 @@ static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED,
 
 static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F1 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F1 };
     set_status(_("Sending Ctrl+Alt+F1"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -353,7 +307,7 @@ static void send_caf1(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf2(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F2 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F2 };
     set_status(_("Sending Ctrl+Alt+F2"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -361,7 +315,7 @@ static void send_caf2(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf3(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F3 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F3 };
     set_status(_("Sending Ctrl+Alt+F3"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -369,7 +323,7 @@ static void send_caf3(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf4(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F4 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F4 };
     set_status(_("Sending Ctrl+Alt+F4"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -377,7 +331,7 @@ static void send_caf4(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf5(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F5 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F5 };
     set_status(_("Sending Ctrl+Alt+F5"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -385,7 +339,7 @@ static void send_caf5(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf6(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F6 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F6 };
     set_status(_("Sending Ctrl+Alt+F6"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -393,7 +347,7 @@ static void send_caf6(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf7(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F7 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F7 };
     set_status(_("Sending Ctrl+Alt+F7"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -401,7 +355,7 @@ static void send_caf7(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_caf8(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_F8 };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_F8 };
     set_status(_("Sending Ctrl+Alt+F8"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -409,7 +363,7 @@ static void send_caf8(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_cad(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_Delete };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_Delete };
     set_status(_("Sending Ctrl+Alt+Delete"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -417,7 +371,7 @@ static void send_cad(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 
 static void send_cab(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 {
-    guint keys[] = { GDK_Control_L, GDK_Alt_L, GDK_BackSpace };
+    guint keys[] = { GDK_KEY_Control_L, GDK_KEY_Alt_L, GDK_KEY_BackSpace };
     set_status(_("Sending Ctrl+Alt+Backspace"));
     vnc_display_send_keys(VNC_DISPLAY(vncdisplay), keys,
                           sizeof(keys)/sizeof(keys[0]));
@@ -483,8 +437,8 @@ static void dialog_update_keysyms(GtkWidget *window, guint *keysyms, guint numsy
 static gboolean dialog_key_ignore(int keyval)
 {
     switch (keyval) {
-    case GDK_Return:
-    case GDK_Escape:
+    case GDK_KEY_Return:
+    case GDK_KEY_Escape:
         return TRUE;
 
     default:
