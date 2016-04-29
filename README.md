@@ -15,6 +15,7 @@ Compiling VNCViewer
 
 The current requirements for compiling VNCViewer are as follows:
  * Gtk+ 2.4 or later, or Gtk+ 3.0 or later
+ * DeforaOS libDesktop
  * the gtk-vnc library
  * an implementation of `make`
 
