@@ -378,6 +378,7 @@ static void send_cab(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *vncdisplay)
 static void do_about(GtkWidget *menu, GtkWidget *window)
 {
 	GtkWidget *dialog;
+	(void) menu;
 
 	dialog = gtk_about_dialog_new();
 	gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(window));
