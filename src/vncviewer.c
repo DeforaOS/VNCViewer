@@ -396,7 +396,7 @@ static void do_about(GtkWidget *menu, GtkWidget *window)
 #endif
 	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), VERSION);
 	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),
-			"http://www.defora.org/");
+			"https://www.defora.org/");
 	gtk_dialog_run(GTK_DIALOG(dialog));
 	gtk_widget_destroy(dialog);
 }
