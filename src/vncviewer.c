@@ -492,7 +492,7 @@ static gboolean dialog_key_release(GtkWidget *window G_GNUC_UNUSED,
     if (defs->set) {
         if (defs->curkeys == 0)
             defs->set = FALSE;
-        if (defs->curkeys)
+	else
             defs->curkeys--;
         return FALSE;
     }
