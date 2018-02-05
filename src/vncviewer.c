@@ -1,7 +1,7 @@
 /* $Id$ */
 static char const _copyright[] =
 "Copyright © 2006 Anthony Liguori <anthony@codemonkey.ws>\n"
-"Copyright © 2015-2016 Pierre Pronchery <khorben@defora.org>";
+"Copyright © 2015-2018 Pierre Pronchery <khorben@defora.org>";
 /* This file is part of DeforaOS Desktop VNCViewer */
 static char const _license[] =
 "This software is originally based on the GTK VNC Widget library.\n"
