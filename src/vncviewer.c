@@ -423,7 +423,7 @@ static void do_scaling(GtkWidget *menu, GtkWidget *vncdisplay)
 static void dialog_update_keysyms(GtkWidget *window, guint *keysyms, guint numsyms)
 {
     gchar *keys;
-    int i;
+    guint i;
 
     keys = g_strdup("");
     for (i = 0; i < numsyms; i++)
@@ -449,7 +449,7 @@ static gboolean dialog_key_press(GtkWidget *window G_GNUC_UNUSED,
                                  GdkEvent *ev, VncGrabDefs *defs)
 {
     gboolean keySymExists;
-    int i;
+    guint i;
 
     if (dialog_key_ignore(ev->key.keyval))
         return FALSE;
@@ -484,7 +484,7 @@ static gboolean dialog_key_press(GtkWidget *window G_GNUC_UNUSED,
 static gboolean dialog_key_release(GtkWidget *window G_GNUC_UNUSED,
                                    GdkEvent *ev, VncGrabDefs *defs)
 {
-    int i;
+    guint i;
 
     if (dialog_key_ignore(ev->key.keyval))
         return FALSE;
