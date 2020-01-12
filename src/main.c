@@ -31,17 +31,17 @@
 #define _(string) gettext(string)
 
 /* constants */
-#ifndef PROGNAME
-# define PROGNAME "vncviewer"
+#ifndef PROGNAME_VNCVIEWER
+# define PROGNAME_VNCVIEWER	"vncviewer"
 #endif
 #ifndef PREFIX
-# define PREFIX		"/usr/local"
+# define PREFIX			"/usr/local"
 #endif
 #ifndef DATADIR
-# define DATADIR	PREFIX "/share"
+# define DATADIR		PREFIX "/share"
 #endif
 #ifndef LOCALEDIR
-# define LOCALEDIR	DATADIR "/locale"
+# define LOCALEDIR		DATADIR "/locale"
 #endif
 
 
@@ -58,7 +58,7 @@ static const GOptionEntry options [] =
 /* vncviewer_error */
 static int _vncviewer_error(char const * message, int ret)
 {
-	fputs(PROGNAME ": ", stderr);
+	fputs(PROGNAME_VNCVIEWER ": ", stderr);
 	perror(message);
 	return ret;
 }

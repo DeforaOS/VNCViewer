@@ -52,8 +52,8 @@ static char const _license[] =
 #define _(string) gettext(string)
 
 /* constants */
-#ifndef PROGNAME
-# define PROGNAME "vncviewer"
+#ifndef PROGNAME_VNCVIEWER
+# define PROGNAME_VNCVIEWER "vncviewer"
 #endif
 
 
@@ -99,7 +99,7 @@ static void set_status(char const * format, ...)
 		gtk_statusbar_push(GTK_STATUSBAR(statusbar), id, status);
 		g_free(status);
 	} else {
-	    fputs(PROGNAME ": ", stderr);
+	    fputs(PROGNAME_VNCVIEWER ": ", stderr);
 		vfprintf(stderr, format, ap);
 	    fputc('\n', stderr);
 	}
