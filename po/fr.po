@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VNCViewer 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-26 01:39+0100\n"
+"POT-Creation-Date: 2020-01-12 20:11+0100\n"
 "PO-Revision-Date: 2016-01-26 00:46+0100\n"
 "Last-Translator: Pierre Pronchery <khorben@defora.org>\n"
 "Language-Team: French\n"
@@ -29,202 +29,206 @@ msgstr "Hôte : "
 msgid "Simple VNC Client on Gtk-VNC"
 msgstr "Client VNC basé sur Gtk-VNC"
 
-#: ../src/vncviewer.c:166
+#: ../src/vncviewer.c:120
 #, c-format
 msgid "%s - %s (Press %s to release pointer)"
 msgstr "%s - %s (Pressez %s pour libérer le curseur)"
 
-#: ../src/vncviewer.c:170
+#: ../src/vncviewer.c:124
 #, c-format
 msgid "%s (Press %s to release pointer)"
 msgstr "%s (Pressez %s pour libérer le curseur)"
 
-#: ../src/vncviewer.c:196
+#: ../src/vncviewer.c:149
 #, c-format
 msgid "Screenshot saved to %s"
 msgstr "Capture d'écran sauvegardée dans %s"
 
-#: ../src/vncviewer.c:289
+#: ../src/vncviewer.c:241
 msgid "Connected to server"
 msgstr "Connecté au serveur"
 
-#: ../src/vncviewer.c:293
+#: ../src/vncviewer.c:245
 msgid "Connected"
 msgstr "Connecté"
 
-#: ../src/vncviewer.c:300
+#: ../src/vncviewer.c:252
 msgid "Connection initialized"
 msgstr "Connexion initialisée"
 
-#: ../src/vncviewer.c:321
+#: ../src/vncviewer.c:273
 #, c-format
 msgid "Authentication failed '%s'"
 msgstr "Échec lors de l'authentification '%s'"
 
-#: ../src/vncviewer.c:327
+#: ../src/vncviewer.c:279
 #, c-format
 msgid "Remote desktop size changed to %dx%d"
 msgstr "La taille de la session distante est maintenant de %dx%d"
 
-#: ../src/vncviewer.c:334
+#: ../src/vncviewer.c:286
 msgid "Disconnected from server"
 msgstr "Déconnecté du serveur"
 
-#: ../src/vncviewer.c:336
+#: ../src/vncviewer.c:288
 msgid "Failed to connect to server"
 msgstr "Échec de la connexion au serveur"
 
-#: ../src/vncviewer.c:340 ../src/vncviewer.c:879
+#: ../src/vncviewer.c:292 ../src/vncviewer.c:841
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: ../src/vncviewer.c:349
+#: ../src/vncviewer.c:301
 msgid "Sending Ctrl+Alt+F1"
 msgstr "Envoi de Ctrl+Alt+F1"
 
-#: ../src/vncviewer.c:357
+#: ../src/vncviewer.c:309
 msgid "Sending Ctrl+Alt+F2"
 msgstr "Envoi de Ctrl+Alt+F2"
 
-#: ../src/vncviewer.c:365
+#: ../src/vncviewer.c:317
 msgid "Sending Ctrl+Alt+F3"
 msgstr "Envoi de Ctrl+Alt+F3"
 
-#: ../src/vncviewer.c:373
+#: ../src/vncviewer.c:325
 msgid "Sending Ctrl+Alt+F4"
 msgstr "Envoi de Ctrl+Alt+F4"
 
-#: ../src/vncviewer.c:381
+#: ../src/vncviewer.c:333
 msgid "Sending Ctrl+Alt+F5"
 msgstr "Envoi de Ctrl+Alt+F5"
 
-#: ../src/vncviewer.c:389
+#: ../src/vncviewer.c:341
 msgid "Sending Ctrl+Alt+F6"
 msgstr "Envoi de Ctrl+Alt+F6"
 
-#: ../src/vncviewer.c:397
+#: ../src/vncviewer.c:349
 msgid "Sending Ctrl+Alt+F7"
 msgstr "Envoi de Ctrl+Alt+F7"
 
-#: ../src/vncviewer.c:405
+#: ../src/vncviewer.c:357
 msgid "Sending Ctrl+Alt+F8"
 msgstr "Envoi de Ctrl+Alt+F8"
 
-#: ../src/vncviewer.c:413
+#: ../src/vncviewer.c:365
 msgid "Sending Ctrl+Alt+Delete"
 msgstr "Envoi de Ctrl+Alt+Suppr"
 
-#: ../src/vncviewer.c:421
+#: ../src/vncviewer.c:373
 msgid "Sending Ctrl+Alt+Backspace"
 msgstr "Sending Ctrl+Alt+Retour arrière"
 
-#: ../src/vncviewer.c:434
+#: ../src/vncviewer.c:387
 msgid "VNC client for the DeforaOS desktop"
 msgstr "Client VNC pour l'environnement DeforaOS"
 
-#: ../src/vncviewer.c:571 ../src/vncviewer.c:580
+#: ../src/vncviewer.c:524 ../src/vncviewer.c:533
 msgid "Key recorder"
 msgstr "Enregistreur de combinaisons de touches"
 
-#: ../src/vncviewer.c:574
+#: ../src/vncviewer.c:527
 msgid "Please press desired grab key combination"
 msgstr "Veuillez entrer la combinaison désirée"
 
-#: ../src/vncviewer.c:622
+#: ../src/vncviewer.c:575
 #, c-format
 msgid "Got credential request for %d credential(s)"
 msgstr "Reçu %d demande(s) d'authentification"
 
-#: ../src/vncviewer.c:647 ../src/vncviewer.c:657
+#: ../src/vncviewer.c:600 ../src/vncviewer.c:610
 msgid "Authentication required"
 msgstr "Authentification requise"
 
-#: ../src/vncviewer.c:669
+#: ../src/vncviewer.c:622
 msgid "Username: "
 msgstr "Utilisateur : "
 
-#: ../src/vncviewer.c:672
+#: ../src/vncviewer.c:625
 msgid "Password: "
 msgstr "Mot de passe : "
 
-#: ../src/vncviewer.c:715
+#: ../src/vncviewer.c:668
 #, c-format
 msgid "Failed to set credential type %d"
-msgstr ""
+msgstr "Erreur lors du passage des identifiants de connexion (%d)"
 
-#: ../src/vncviewer.c:720
+#: ../src/vncviewer.c:673
 #, c-format
 msgid "Unsupported credential type %d"
-msgstr ""
+msgstr "Identifiants de connexion non supportés (%d)"
 
-#: ../src/vncviewer.c:801
+#: ../src/vncviewer.c:756
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/vncviewer.c:809
+#: ../src/vncviewer.c:760
+msgid "Save _screenshot"
+msgstr "_Capture d'écran"
+
+#: ../src/vncviewer.c:771
 msgid "_Send Key"
 msgstr "_Envoi de touche"
 
-#: ../src/vncviewer.c:814
+#: ../src/vncviewer.c:776
 msgid "Ctrl+Alt+F_1"
 msgstr "Ctrl+Alt+F_1"
 
-#: ../src/vncviewer.c:815
+#: ../src/vncviewer.c:777
 msgid "Ctrl+Alt+F_2"
 msgstr "Ctrl+Alt+F_2"
 
-#: ../src/vncviewer.c:816
+#: ../src/vncviewer.c:778
 msgid "Ctrl+Alt+F_3"
 msgstr "Ctrl+Alt+F_3"
 
-#: ../src/vncviewer.c:817
+#: ../src/vncviewer.c:779
 msgid "Ctrl+Alt+F_4"
 msgstr "Ctrl+Alt+F_4"
 
-#: ../src/vncviewer.c:818
+#: ../src/vncviewer.c:780
 msgid "Ctrl+Alt+F_5"
 msgstr "Ctrl+Alt+F_5"
 
-#: ../src/vncviewer.c:819
+#: ../src/vncviewer.c:781
 msgid "Ctrl+Alt+F_6"
 msgstr "Ctrl+Alt+F_6"
 
-#: ../src/vncviewer.c:820
+#: ../src/vncviewer.c:782
 msgid "Ctrl+Alt+F_7"
 msgstr "Ctrl+Alt+F_7"
 
-#: ../src/vncviewer.c:821
+#: ../src/vncviewer.c:783
 msgid "Ctrl+Alt+F_8"
 msgstr "Ctrl+Alt+F_8"
 
-#: ../src/vncviewer.c:822
+#: ../src/vncviewer.c:784
 msgid "Ctrl+Alt+_Del"
 msgstr "Ctrl+Alt+_Suppr"
 
-#: ../src/vncviewer.c:823
+#: ../src/vncviewer.c:785
 msgid "Ctrl+Alt+_Backspace"
 msgstr "Ctrl+Alt+_Retour arrière"
 
-#: ../src/vncviewer.c:838
+#: ../src/vncviewer.c:800
 msgid "_View"
 msgstr "_Vue"
 
-#: ../src/vncviewer.c:843
+#: ../src/vncviewer.c:805
 msgid "_Full Screen"
 msgstr "_Plein écran"
 
-#: ../src/vncviewer.c:844
+#: ../src/vncviewer.c:806
 msgid "Scaled display"
 msgstr "Étirer l'affichage"
 
-#: ../src/vncviewer.c:851
+#: ../src/vncviewer.c:813
 msgid "_Settings"
 msgstr "_Préférences"
 
-#: ../src/vncviewer.c:856
+#: ../src/vncviewer.c:818
 msgid "_Set grab keys"
 msgstr "_Définir la combinaison de focus"
 
-#: ../src/vncviewer.c:861
+#: ../src/vncviewer.c:823
 msgid "_Help"
 msgstr "_Aide"
