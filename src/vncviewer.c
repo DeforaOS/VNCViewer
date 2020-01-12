@@ -239,7 +239,7 @@ static int connected = 0;
 static void vnc_connected(GtkWidget *vncdisplay G_GNUC_UNUSED)
 {
     set_status(_("Connected to server"));
-    gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_CONNECT,
+    gtk_image_set_from_icon_name(GTK_IMAGE(status), "gtk-connect",
 		    GTK_ICON_SIZE_MENU);
 #if GTK_CHECK_VERSION(2, 12, 0)
     gtk_widget_set_tooltip_text(status, _("Connected"));
@@ -286,7 +286,7 @@ static void vnc_disconnected(GtkWidget *vncdisplay G_GNUC_UNUSED,
         set_status(_("Disconnected from server"));
     else
         set_status(_("Failed to connect to server"));
-    gtk_image_set_from_stock(GTK_IMAGE(status), GTK_STOCK_DISCONNECT,
+    gtk_image_set_from_icon_name(GTK_IMAGE(status), "gtk-disconnect",
 		    GTK_ICON_SIZE_MENU);
 #if GTK_CHECK_VERSION(2, 12, 0)
     gtk_widget_set_tooltip_text(status, _("Disconnected"));
@@ -527,7 +527,7 @@ static void do_set_grab_keys(GtkWidget *menu G_GNUC_UNUSED, GtkWidget *window)
 		    _("Please press desired grab key combination"));
 #if GTK_CHECK_VERSION(2, 10, 0)
     gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog),
-		    gtk_image_new_from_stock(GTK_STOCK_MEDIA_RECORD,
+		    gtk_image_new_from_icon_name("gtk-media-record",
 			    GTK_ICON_SIZE_DIALOG));
 #endif
     gtk_window_set_title(GTK_WINDOW(dialog), _("Key recorder"));
@@ -603,8 +603,8 @@ static void vnc_credential(GtkWidget *vncdisplay, GValueArray *credList)
 		    "");
 #if GTK_CHECK_VERSION(2, 10, 0)
 	gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog),
-			gtk_image_new_from_stock(
-				GTK_STOCK_DIALOG_AUTHENTICATION,
+			gtk_image_new_from_icon_name(
+				"gtk-dialog-authentication",
 				GTK_ICON_SIZE_DIALOG));
 #endif
 	gtk_window_set_title(GTK_WINDOW(dialog), _("Authentication required"));
@@ -759,7 +759,7 @@ int vncviewer(gchar ** args)
     submenu = gtk_menu_new();
     screenshot = gtk_image_menu_item_new_with_mnemonic(_("Save _screenshot"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(screenshot),
-		    gtk_image_new_from_stock(GTK_STOCK_SAVE,
+		    gtk_image_new_from_icon_name("gtk-save",
 			    GTK_ICON_SIZE_MENU));
     gtk_menu_shell_append(GTK_MENU_SHELL(submenu), screenshot);
     menuitem = gtk_separator_menu_item_new();
@@ -836,7 +836,7 @@ int vncviewer(gchar ** args)
 #else
     widget = gtk_hbox_new(FALSE, 4);
 #endif
-    status = gtk_image_new_from_stock(GTK_STOCK_DISCONNECT, GTK_ICON_SIZE_MENU);
+    status = gtk_image_new_from_icon_name("gtk-disconnect", GTK_ICON_SIZE_MENU);
 #if GTK_CHECK_VERSION(2, 12, 0)
     gtk_widget_set_tooltip_text(status, _("Disconnected"));
 #endif
